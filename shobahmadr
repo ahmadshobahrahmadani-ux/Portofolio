@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Ahmad Shobah Rahmadani</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f6f6f4;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6b6b68;
+      --text-tertiary: #9a9a96;
+      --border: rgba(0, 0, 0, 0.1);
+      --border-md: rgba(0, 0, 0, 0.18);
+      --accent: #185FA5;
+      --accent-bg: #E6F1FB;
+      --accent-text: #0C447C;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1a;
+        --bg-secondary: #252523;
+        --text-primary: #f0efe8;
+        --text-secondary: #a0a09a;
+        --text-tertiary: #686864;
+        --border: rgba(255, 255, 255, 0.1);
+        --border-md: rgba(255, 255, 255, 0.18);
+        --accent: #378ADD;
+        --accent-bg: #042C53;
+        --accent-text: #85B7EB;
+      }
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      padding: 0 1rem;
+    }
+
+    .port {
+      max-width: 680px;
+      margin: 0 auto;
+      padding-bottom: 4rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      position: relative;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      /* leave room for avatar on the right */
+      padding-right: 90px;
+    }
+
+    .hero-role {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 4px 11px;
+      border: 0.5px solid var(--border-md);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── Avatar ── */
+    .hero-avatar {
+      position: absolute;
+      top: 3.5rem;
+      right: 0;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border-md);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      font-size: 32px;
+    }
+
+    /* ── Sections ── */
+    .section {
+      padding: 2rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .sec-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ── Education ── */
+    .edu-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .edu-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
+
+    .edu-body {
+      flex: 1;
+    }
+
+    .edu-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .edu-detail {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .edu-gpa {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      color: var(--accent-text);
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .skill-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+    }
+
+    .skill-cat {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .skill-items {
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.9;
+    }
+
+    /* ── Projects ── */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .proj-card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+    }
+
+    .proj-card img {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      margin: 12px 0;
+      border: 0.5px solid var(--border);
+      display: block;
+    }
+
+    .proj-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .proj-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .proj-tag {
+      font-size: 11px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      color: var(--accent-text);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .proj-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    /* Bullet list inside project cards */
+    .proj-duties {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 10px;
+    }
+
+    .proj-duties li {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .proj-duties li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--text-tertiary);
+    }
+
+    /* Tech pills */
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stack-pill {
+      font-size: 11px;
+      padding: 2px 8px;
+      border: 0.5px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    /* ── Organisations ── */
+    .org-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .org-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 0.85rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .org-row:last-child {
+      border-bottom: none;
+    }
+
+    .org-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+      color: var(--text-secondary);
+    }
+
+    .org-body {
+      flex: 1;
+    }
+
+    .org-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .org-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .org-duties {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .org-duties li {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .org-duties li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--text-tertiary);
+    }
+
+    /* ── Contact ── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .contact-row i {
+      font-size: 16px;
+      color: var(--text-tertiary);
+    }
+
+    .contact-row a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-row a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 2rem 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: 28px;
+        padding-right: 80px;
+      }
+
+      .proj-header {
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-avatar {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="port">
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="hero-tag">Portfolio</p>
+
+      <div class="hero-avatar">
+        <div class="hero-avatar-placeholder">
+          <i class="ti ti-user"></i>
+        </div>
+      </div>
+
+      <h1 class="hero-name">Ahmad Shobah Rahmadani</h1>
+      <p class="hero-role">
+        D3 Teknik Informatika · Universitas Sebelas Maret<br>
+        Mahasiswa · Aktif
+      </p>
+      <div class="hero-badges">
+        <span class="badge"><i class="ti ti-map-pin"></i>Yogyakarta, Indonesia</span>
+        <span class="badge">Semester 2</span>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="section">
+      <p class="sec-label">Tentang</p>
+      <p class="about-text">
+        Saya adalah mahasiswa D3 Teknik Informatika di Universitas Sebelas Maret yang aktif dalam kegiatan akademik
+        maupun organisasi. Selain mengembangkan kemampuan teknis di bidang pemrograman dan cloud computing, saya juga
+        berkontribusi di organisasi kemahasiswaan sebagai Staff Humas — mengelola komunikasi eksternal, konten media
+        sosial, serta administrasi kegiatan inklusif disabilitas. Saya percaya bahwa teknologi dan kepedulian sosial
+        bisa berjalan beriringan.
+      </p>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <p class="sec-label">Pendidikan</p>
+      <div class="edu-row">
+        <div class="edu-icon"><i class="ti ti-school"></i></div>
+        <div class="edu-body">
+          <p class="edu-name">Universitas Sebelas Maret (UNS)</p>
+          <p class="edu-detail">
+            D3 Teknik Informatika<br>
+            2025 — Sekarang
+          </p>
+          <span class="edu-gpa">IPK 3,62</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <p class="sec-label">Skills &amp; Tech Stack</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <p class="skill-cat">Programming</p>
+          <p class="skill-items">Java<br>PHP<br>SQL</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Web &amp; Database</p>
+          <p class="skill-items">MySQL<br>Apache / XAMPP<br>HTML &amp; CSS</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Cloud</p>
+          <p class="skill-items">AWS EC2<br>AWS ALB<br>LAMP Stack</p>
+        </div>
+        <div class="skill-card">
+          <p class="skill-cat">Tools</p>
+          <p class="skill-items">Canva / Figma<br>Microsoft Office</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <p class="sec-label">Proyek</p>
+      <div class="project-list">
+
+        <!-- Project 2 -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <span class="proj-title">Company Profile Website Deployment on AWS EC2</span>
+            <span class="proj-tag">Cloud</span>
+          </div>
+          <img src="Company Profile Website Deployment on AWS EC2.png" alt="Company Profile Deployment Preview">
+          <p class="proj-desc">
+            Melakukan deployment website company profile pada Amazon EC2 menggunakan public IP sehingga website dapat
+            diakses secara online melalui internet tanpa menggunakan layanan hosting pihak ketiga.
+          </p>
+          <ul class="proj-duties">
+            <li>Melakukan provisioning dan konfigurasi instance Amazon EC2 pada AWS Academy Sandbox.</li>
+            <li>Menginstal dan mengonfigurasi web server (Apache/Nginx) pada sistem operasi Linux.</li>
+            <li>Mengembangkan website company profile yang terdiri dari halaman Home, About, Services/Product, dan
+              Contact.</li>
+            <li>Mengimplementasikan navigasi antar halaman menggunakan HTML, CSS, dan JavaScript.</li>
+            <li>Mengonfigurasi security group agar website dapat diakses melalui HTTP dari jaringan publik.</li>
+            <li>Melakukan deployment menggunakan Public IP EC2 dan menguji aksesibilitas layanan melalui browser.</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-pill">AWS EC2</span>
+            <span class="stack-pill">Linux</span>
+            <span class="stack-pill">Apache/Nginx</span>
+            <span class="stack-pill">HTML</span>
+            <span class="stack-pill">CSS</span>
+            <span class="stack-pill">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <span class="proj-title">Environment Monitoring Device untuk Greenhouse Urban Farming</span>
+            <span class="proj-tag">Wokwi Simulator</span>
+          </div>
+          <img src="Environment Monitoring Device untuk Greenhouse Urban Farming.png"
+            alt="Environment Monitoring Device Preview">
+          <p class="proj-desc">
+            Aplikasi monitoring lingkungan berbasis Arduino Uno untuk memantau kondisi greenhouse secara real-time
+            melalui pengukuran suhu, kelembapan udara, kualitas udara, kelembapan tanah, dan level air irigasi.
+          </p>
+          <ul class="proj-duties">
+            <li>Merancang sistem monitoring menggunakan sensor DHT22, MQ-135, HC-SR04, dan Soil Moisture Sensor.</li>
+            <li>Mengembangkan logika klasifikasi kondisi menjadi Normal, Peringatan, dan Bahaya berdasarkan nilai ambang
+              (threshold) setiap sensor.</li>
+            <li>Mengimplementasikan tampilan data sensor secara bergilir (scrolling) pada LCD 16×4.</li>
+            <li>Menambahkan indikator visual berupa LED berkedip saat kondisi memasuki status bahaya.</li>
+            <li>Menyusun kode secara modular untuk pembacaan sensor, evaluasi status, dan pengelolaan tampilan.</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-pill">Arduino Uno</span>
+            <span class="stack-pill">Wokwi</span>
+            <span class="stack-pill">C++</span>
+            <span class="stack-pill">DHT22</span>
+            <span class="stack-pill">MQ-135</span>
+            <span class="stack-pill">HC-SR04</span>
+            <span class="stack-pill">LCD 16×4</span>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <span class="proj-title">Sistem Lampu Otomatis dengan Monitoring Suhu Ruangan</span>
+            <span class="proj-tag">Wokwi Simulator</span>
+          </div>
+          <img src="Sistem Lampu Otomatis dengan Monitoring Suhu Ruangan.png" alt="Automatic Light System Preview">
+          <p class="proj-desc">
+            Sistem otomasi ruangan sederhana yang mengontrol pencahayaan berdasarkan intensitas cahaya lingkungan serta
+            menampilkan suhu ruangan secara real-time pada LCD.
+          </p>
+          <ul class="proj-duties">
+            <li>Merancang rangkaian berbasis sensor cahaya (LDR), sensor suhu NTC, LED, dan LCD 16×2.</li>
+            <li>Mengembangkan logika kontrol otomatis untuk menyalakan dan mematikan lampu berdasarkan nilai intensitas
+              cahaya.</li>
+            <li>Mengintegrasikan pembacaan suhu ruangan ke dalam tampilan LCD secara real-time.</li>
+            <li>Mengimplementasikan pemrosesan data sensor analog untuk kebutuhan monitoring dan kontrol.</li>
+            <li>Mendokumentasikan struktur program agar mudah dipahami dan dikembangkan lebih lanjut.</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-pill">Arduino Uno</span>
+            <span class="stack-pill">Wokwi</span>
+            <span class="stack-pill">LDR</span>
+            <span class="stack-pill">NTC Thermistor</span>
+            <span class="stack-pill">LCD 16×2</span>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="proj-card">
+          <div class="proj-header">
+            <span class="proj-title">Animal Eat &amp; Avoid — Educational Java Game</span>
+            <span class="proj-tag">Java &amp; Greenfoot</span>
+          </div>
+          <img src="Animal Eat & Avoid — Educational Java Game.png" alt="Animal Eat & Avoid Game Preview">
+          <p class="proj-desc">
+            Game edukasi berbasis Java menggunakan Greenfoot yang mengajarkan pola makan hewan melalui mekanisme
+            menangkap makanan yang sesuai dan menghindari rintangan. Permainan terdiri dari 3 level dengan sistem skor,
+            nyawa, timer, dan tingkat kesulitan yang meningkat.
+          </p>
+          <ul class="proj-duties">
+            <li>Mengimplementasikan konsep Object-Oriented Programming (OOP) menggunakan Java.</li>
+            <li>Mengembangkan sistem skor, nyawa (lives), countdown timer, dan level progression.</li>
+            <li>Menerapkan collision detection untuk interaksi karakter, makanan, dan rintangan.</li>
+            <li>Merancang antarmuka permainan serta mekanisme game over dan kemenangan.</li>
+            <li>Melakukan pengujian terhadap 10 pengguna dan mengevaluasi umpan balik untuk perbaikan gameplay.</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-pill">Java</span>
+            <span class="stack-pill">Greenfoot</span>
+            <span class="stack-pill">OOP</span>
+            <span class="stack-pill">Game Development</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Organisations -->
+    <div class="section">
+      <p class="sec-label">Organisasi</p>
+      <div class="org-list">
+        <div class="org-row">
+          <div class="org-icon"><i class="ti ti-accessibility"></i></div>
+          <div class="org-body">
+            <p class="org-name">IKAMADIS — Ikatan Mahasiswa Disabilitas</p>
+            <p class="org-role">Staff Humas (Public Relations)</p>
+            <ul class="org-duties">
+              <li>Membuat Google Form pendaftaran acara inklusi disabilitas.</li>
+              <li>Membuat caption konten media sosial (WhatsApp &amp; Instagram) untuk acara ulang tahun, kegiatan
+                kampus, acara peringatan, dan kegiatan organisasi.</li>
+              <li>Mengelola keadministrasian peserta acara.</li>
+              <li>Berkoordinasi dengan divisi PDD terkait pengelolaan media sosial.</li>
+              <li>Berkoordinasi komunikasi eksternal organisasi.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="section">
+      <p class="sec-label">Kontak</p>
+      <div class="contact-row">
+        <i class="ti ti-mail"></i>
+        <a href="mailto:ahmadshobahrahmadani@email.com">ahmadshobahrahmadani@email.com</a>
+      </div>
+      <div class="contact-row">
+        <i class="ti ti-brand-whatsapp"></i>
+        <a href="https://wa.me/6282223605411" target="_blank">+62 822-2360-5411</a>
+      </div>
+      <div class="contact-row">
+        <i class="ti ti-brand-linkedin"></i>
+        <a href="https://linkedin.com/in/shobahmadr/" target="_blank">linkedin.com/in/shobahmadr/</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-note">© 2026 Ahmad Shobah Rahmadani · D3 Teknik Informatika · UNS</p>
+    </div>
+
+  </div>
+</body>
+
+</html>
